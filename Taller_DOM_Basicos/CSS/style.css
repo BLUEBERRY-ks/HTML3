@@ -1,0 +1,293 @@
+/* ==========================================================
+   Actividad 1: DOM — hoja de estilos compartida
+   Sirve para index, calculadora, venta, promedio, salario y otra
+   ========================================================== */
+
+:root {
+  --fondo: #eaf0f4;
+  --superficie: #ffffff;
+  --tinta: #13233a;
+  --tinta-suave: #51607a;
+  --linea: #cdd8e2;
+  --acento: #1f4fd8;
+  --acento-oscuro: #173ba3;
+  --resultado-fondo: #e6f4ee;
+  --resultado-borde: #8cc5a8;
+  --resultado-texto: #0d4a30;
+  --radio: 10px;
+  --fuente: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1.25rem 4rem;
+  max-width: 40rem;
+  margin-inline: auto;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ---------- Tipografía ---------- */
+
+h1 {
+  margin: 1rem 0 0.5rem;
+  font-size: clamp(1.6rem, 4vw + 1rem, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+body > p {
+  color: var(--tinta-suave);
+}
+
+code {
+  padding: 0.1em 0.35em;
+  background: #dbe5ee;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+a {
+  color: var(--acento);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--acento-oscuro);
+}
+
+/* Enlace "Volver al inicio" (primer elemento de cada ejercicio) */
+body > a:first-child {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  background: var(--superficie);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+body > a:first-child:hover {
+  border-color: var(--acento);
+}
+
+/* ---------- Índice de ejercicios ---------- */
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+li a {
+  display: block;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--linea);
+  border-left: 4px solid var(--acento);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--tinta);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+li a:hover {
+  border-left-color: var(--acento-oscuro);
+  transform: translateX(3px);
+  color: var(--tinta);
+}
+
+/* ---------- Formularios ---------- */
+
+form {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  box-shadow: 0 1px 2px rgba(19, 35, 58, 0.06);
+}
+
+form p:last-child {
+  margin-bottom: 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  background: #f8fafc;
+  color: var(--tinta);
+  font: inherit;
+  font-weight: 400;
+}
+
+input::placeholder {
+  color: #8d9ab0;
+}
+
+input:focus {
+  outline: 3px solid rgba(31, 79, 216, 0.3);
+  outline-offset: 0;
+  border-color: var(--acento);
+  background: #fff;
+}
+
+/* Campos de resultado (readonly) */
+input[readonly] {
+  background: var(--resultado-fondo);
+  border-color: var(--resultado-borde);
+  color: var(--resultado-texto);
+  font-family: var(--mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: default;
+}
+
+input[readonly]:focus {
+  outline-color: rgba(13, 74, 48, 0.3);
+  border-color: var(--resultado-texto);
+}
+
+/* ---------- Botones ---------- */
+
+/* Párrafo que contiene botones: se reparten el ancho */
+form p:has(button) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.25rem 0;
+}
+
+button {
+  flex: 1 1 7rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--acento);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+button:hover {
+  background: var(--acento-oscuro);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(31, 79, 216, 0.4);
+  outline-offset: 2px;
+}
+
+/* ---------- Tabla (Ejercicio 5) ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--linea);
+}
+
+th {
+  background: var(--tinta);
+  color: #fff;
+  font-weight: 600;
+}
+
+th:last-child,
+td:last-child {
+  text-align: right;
+  font-family: var(--mono);
+}
+
+tbody tr:nth-child(even) {
+  background: #f4f7fa;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Filas clave: subtotal y total general */
+tbody tr:nth-child(5),
+tbody tr:nth-child(7) {
+  font-weight: 700;
+  background: #e3ebf3;
+}
+
+tbody tr:nth-child(7) td {
+  background: var(--resultado-fondo);
+  color: var(--resultado-texto);
+}
+
+/* ---------- Móvil ---------- */
+
+@media (max-width: 30rem) {
+  body {
+    padding-top: 1.25rem;
+  }
+
+  form {
+    padding: 1rem;
+  }
+
+  th,
+  td {
+    padding: 0.55rem 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
